@@ -51,3 +51,1383 @@ Migrating to ChangeActiveStorageRecordReferencesToUuid (20211113225531)
   [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (2.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(8472758472654041580)[0m
   [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/images/compress" for 127.0.0.1 at 2021-11-14 01:57:16 +0300
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ImagesController#compress as */*
+  Parameters: {"image"=>#<ActionDispatch::Http::UploadedFile:0x000055e766dbf850 @tempfile=#<Tempfile:/tmp/RackMultipart20211114-32375-liu8co.jpg>, @original_filename="0e97765172ca9089aa95-1.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image\"; filename=\"0e97765172ca9089aa95-1.jpg\"\r\nContent-Type: image/jpeg\r\n">, "email"=>"asdsdbc@mail.com"}
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Create (1.3ms)[0m  [1m[32mINSERT INTO "images" ("email", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["email", "asdsdbc@mail.com"], ["created_at", "2021-11-13 22:57:17.679951"], ["updated_at", "2021-11-13 22:57:17.679951"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Load (2.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", "6d56252f-ef61-4c64-a6ab-2fa75fb289b5"], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", "6d56252f-ef61-4c64-a6ab-2fa75fb289b5"], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Create (2.8ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "xertgpjfcs0ajimveyhl7qoxvsvb"], ["filename", "0e97765172ca9089aa95-1.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 274899], ["checksum", "zg1Grz9DNXkafrezItXC3w=="], ["created_at", "2021-11-13 22:57:17.810834"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Create (1.0ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "blob_id", "created_at", "record_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "image"], ["record_type", "Image"], ["blob_id", 1], ["created_at", "2021-11-13 22:57:17.823151"], ["record_id", "6d56252f-ef61-4c64-a6ab-2fa75fb289b5"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Update (1.4ms)[0m  [1m[33mUPDATE "images" SET "updated_at" = $1 WHERE "images"."id" = $2[0m  [["updated_at", "2021-11-13 22:57:17.829529"], ["id", "6d56252f-ef61-4c64-a6ab-2fa75fb289b5"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+[36m  Disk Storage (3.6ms) [0m[32mUploaded file to key: xertgpjfcs0ajimveyhl7qoxvsvb (checksum: zg1Grz9DNXkafrezItXC3w==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 5751038f-ece7-4e08-8308-943d856b0c14) to Async(default) with arguments: #<GlobalID:0x00007f6b8c00cd88 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/1>>
+Completed 200 OK in 532ms (Views: 0.5ms | ActiveRecord: 38.3ms | Allocations: 41031)
+
+
+  [1m[36mActiveStorage::Blob Load (1.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5751038f-ece7-4e08-8308-943d856b0c14] Performing ActiveStorage::AnalyzeJob (Job ID: 5751038f-ece7-4e08-8308-943d856b0c14) from Async(default) enqueued at 2021-11-13T22:57:17Z with arguments: #<GlobalID:0x00007f6b8c066b30 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/1>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5751038f-ece7-4e08-8308-943d856b0c14] [36m  Disk Storage (2.3ms) [0m[34mDownloaded file from key: xertgpjfcs0ajimveyhl7qoxvsvb[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5751038f-ece7-4e08-8308-943d856b0c14]   [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5751038f-ece7-4e08-8308-943d856b0c14]   [1m[36mActiveStorage::Blob Update (2.7ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"width\":1100,\"height\":733,\"analyzed\":true}"], ["id", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5751038f-ece7-4e08-8308-943d856b0c14]   [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5751038f-ece7-4e08-8308-943d856b0c14] Performed ActiveStorage::AnalyzeJob (Job ID: 5751038f-ece7-4e08-8308-943d856b0c14) from Async(default) in 280.95ms
+  [1m[36mImage Load (0.4ms)[0m  [1m[34mSELECT "images".* FROM "images" ORDER BY "images"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/images/6d56252f-ef61-4c64-a6ab-2fa75fb289b5/download" for 127.0.0.1 at 2021-11-14 01:57:36 +0300
+Processing by ImagesController#download as */*
+  Parameters: {"id"=>"6d56252f-ef61-4c64-a6ab-2fa75fb289b5", "image"=>{}}
+  [1m[36mImage Load (0.5ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT $2[0m  [["id", "6d56252f-ef61-4c64-a6ab-2fa75fb289b5"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:22:in `set_image'
+  [1m[36mActiveStorage::Attachment Load (2.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", "6d56252f-ef61-4c64-a6ab-2fa75fb289b5"], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:15:in `download'
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:15:in `download'
+Completed 200 OK in 25ms (Views: 0.2ms | ActiveRecord: 3.4ms | Allocations: 3743)
+
+
+Started GET "/" for 127.0.0.1 at 2021-11-14 01:57:46 +0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/share/rvm/gems/ruby-3.0.0/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/share/rvm/gems/ruby-3.0.0/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 7.1ms | Allocations: 458)
+Completed 200 OK in 41ms (Views: 21.2ms | ActiveRecord: 0.0ms | Allocations: 3855)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--38ebc5b86cac5014dd479533ec3f8829a20f615f/0e97765172ca9089aa95-1.jpg" for 127.0.0.1 at 2021-11-14 01:57:49 +0300
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--38ebc5b86cac5014dd479533ec3f8829a20f615f", "filename"=>"0e97765172ca9089aa95-1"}
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[36m  Disk Storage (1.0ms) [0m[34mGenerated URL for file at key: xertgpjfcs0ajimveyhl7qoxvsvb (http://127.0.0.1:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhlR1Z5ZEdkd2FtWmpjekJoYW1sdGRtVjVhR3czY1c5NGRuTjJZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpWDJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpCbE9UYzNOalV4TnpKallUa3dPRGxoWVRrMUxURXVhbkJuSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0Snljd1pUazNOelkxTVRjeVkyRTVNRGc1WVdFNU5TMHhMbXB3WndZN0JsUTZFV052Ym5SbGJuUmZkSGx3WlVraUQybHRZV2RsTDJwd1pXY0dPd1pVT2hGelpYSjJhV05sWDI1aGJXVTZDbXh2WTJGcyIsImV4cCI6IjIwMjEtMTEtMTNUMjM6MDI6NDkuNjQ2WiIsInB1ciI6ImJsb2Jfa2V5In19--b85afaca62f697580fb8463d50d5d5e87314f3fc/0e97765172ca9089aa95-1.jpg)[0m
+Redirected to http://127.0.0.1:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhlR1Z5ZEdkd2FtWmpjekJoYW1sdGRtVjVhR3czY1c5NGRuTjJZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpWDJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpCbE9UYzNOalV4TnpKallUa3dPRGxoWVRrMUxURXVhbkJuSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0Snljd1pUazNOelkxTVRjeVkyRTVNRGc1WVdFNU5TMHhMbXB3WndZN0JsUTZFV052Ym5SbGJuUmZkSGx3WlVraUQybHRZV2RsTDJwd1pXY0dPd1pVT2hGelpYSjJhV05sWDI1aGJXVTZDbXh2WTJGcyIsImV4cCI6IjIwMjEtMTEtMTNUMjM6MDI6NDkuNjQ2WiIsInB1ciI6ImJsb2Jfa2V5In19--b85afaca62f697580fb8463d50d5d5e87314f3fc/0e97765172ca9089aa95-1.jpg
+Completed 302 Found in 20ms (ActiveRecord: 0.5ms | Allocations: 1742)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhlR1Z5ZEdkd2FtWmpjekJoYW1sdGRtVjVhR3czY1c5NGRuTjJZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpWDJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpCbE9UYzNOalV4TnpKallUa3dPRGxoWVRrMUxURXVhbkJuSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0Snljd1pUazNOelkxTVRjeVkyRTVNRGc1WVdFNU5TMHhMbXB3WndZN0JsUTZFV052Ym5SbGJuUmZkSGx3WlVraUQybHRZV2RsTDJwd1pXY0dPd1pVT2hGelpYSjJhV05sWDI1aGJXVTZDbXh2WTJGcyIsImV4cCI6IjIwMjEtMTEtMTNUMjM6MDI6NDkuNjQ2WiIsInB1ciI6ImJsb2Jfa2V5In19--b85afaca62f697580fb8463d50d5d5e87314f3fc/0e97765172ca9089aa95-1.jpg" for 127.0.0.1 at 2021-11-14 01:57:49 +0300
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"0e97765172ca9089aa95-1"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 240)
+
+
+Started GET "/images/6d56252f-ef61-4c64-a6ab-2fa75fb289b5/download" for 127.0.0.1 at 2021-11-14 01:58:13 +0300
+Processing by ImagesController#download as */*
+  Parameters: {"id"=>"6d56252f-ef61-4c64-a6ab-2fa75fb289b5", "image"=>{}}
+  [1m[36mImage Load (0.6ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT $2[0m  [["id", "6d56252f-ef61-4c64-a6ab-2fa75fb289b5"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:22:in `set_image'
+  [1m[36mActiveStorage::Attachment Load (1.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", "6d56252f-ef61-4c64-a6ab-2fa75fb289b5"], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:16:in `download'
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:16:in `download'
+Completed 200 OK in 109ms (Views: 0.4ms | ActiveRecord: 22.7ms | Allocations: 15597)
+
+
+Started GET "/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--38ebc5b86cac5014dd479533ec3f8829a20f615f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2Q25OaGRtVnlld1k2REhGMVlXeHBkSGxwRHc9PSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--55cc9331fba660900747e58bec5a282e6b7990a1/0e97765172ca9089aa95-1.jpg" for 127.0.0.1 at 2021-11-14 01:58:22 +0300
+Processing by ActiveStorage::Representations::RedirectController#show as JPEG
+  Parameters: {"signed_blob_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--38ebc5b86cac5014dd479533ec3f8829a20f615f", "variation_key"=>"[FILTERED]", "filename"=>"0e97765172ca9089aa95-1"}
+  [1m[36mActiveStorage::Blob Load (0.9ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mActiveStorage::VariantRecord Load (1.2ms)[0m  [1m[34mSELECT "active_storage_variant_records".* FROM "active_storage_variant_records" WHERE "active_storage_variant_records"."blob_id" = $1 AND "active_storage_variant_records"."variation_digest" = $2 LIMIT $3[0m  [["blob_id", 1], ["variation_digest", "cGOfhfbZsle5Q7mU0qHuxFpt3ic="], ["LIMIT", 1]]
+[36m  Disk Storage (0.4ms) [0m[34mDownloaded file from key: xertgpjfcs0ajimveyhl7qoxvsvb[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveStorage::VariantRecord Create (1.5ms)[0m  [1m[32mINSERT INTO "active_storage_variant_records" ("blob_id", "variation_digest") VALUES ($1, $2) RETURNING "id"[0m  [["blob_id", 1], ["variation_digest", "cGOfhfbZsle5Q7mU0qHuxFpt3ic="]]
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", nil], ["record_type", "ActiveStorage::VariantRecord"], ["name", "image"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", nil], ["record_type", "ActiveStorage::VariantRecord"], ["name", "image"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Blob Create (0.4ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "dp1xhqwpc4ymkskdr7nu0dgmliui"], ["filename", "0e97765172ca9089aa95-1.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 16737], ["checksum", "MrVoCILBI0YK3w9VVERPQQ=="], ["created_at", "2021-11-13 22:58:22.446992"]]
+  [1m[36mActiveStorage::Attachment Create (1.8ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "blob_id", "created_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "image"], ["record_type", "ActiveStorage::VariantRecord"], ["blob_id", 2], ["created_at", "2021-11-13 22:58:22.453953"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 181ms (ActiveRecord: 15.9ms | Allocations: 18565)
+
+
+  
+ActiveRecord::NotNullViolation (PG::NotNullViolation: ERROR:  null value in column "record_id" violates not-null constraint
+DETAIL:  Failing row contains (2, image, ActiveStorage::VariantRecord, 2, 2021-11-13 22:58:22.453953, null).
+):
+  
+activerecord (6.1.4.1) lib/active_record/connection_adapters/postgresql_adapter.rb:672:in `exec_params'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/postgresql_adapter.rb:672:in `block (2 levels) in exec_no_cache'
+activesupport (6.1.4.1) lib/active_support/dependencies/interlock.rb:48:in `block in permit_concurrent_loads'
+activesupport (6.1.4.1) lib/active_support/concurrency/share_lock.rb:187:in `yield_shares'
+activesupport (6.1.4.1) lib/active_support/dependencies/interlock.rb:47:in `permit_concurrent_loads'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/postgresql_adapter.rb:671:in `block in exec_no_cache'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract_adapter.rb:696:in `block (2 levels) in log'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:26:in `block (2 levels) in synchronize'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:25:in `handle_interrupt'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:25:in `block in synchronize'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:21:in `handle_interrupt'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:21:in `synchronize'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract_adapter.rb:695:in `block in log'
+activesupport (6.1.4.1) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract_adapter.rb:687:in `log'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/postgresql_adapter.rb:670:in `exec_no_cache'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/postgresql_adapter.rb:649:in `execute_and_clear'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:53:in `exec_query'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/database_statements.rb:136:in `exec_insert'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:91:in `exec_insert'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/database_statements.rb:171:in `insert'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/query_cache.rb:22:in `insert'
+activerecord (6.1.4.1) lib/active_record/persistence.rb:375:in `_insert_record'
+activerecord (6.1.4.1) lib/active_record/persistence.rb:929:in `_create_record'
+activerecord (6.1.4.1) lib/active_record/counter_cache.rb:166:in `_create_record'
+activerecord (6.1.4.1) lib/active_record/locking/optimistic.rb:79:in `_create_record'
+activerecord (6.1.4.1) lib/active_record/attribute_methods/dirty.rb:201:in `_create_record'
+activerecord (6.1.4.1) lib/active_record/callbacks.rb:461:in `block in _create_record'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:106:in `run_callbacks'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:824:in `_run_create_callbacks'
+activerecord (6.1.4.1) lib/active_record/callbacks.rb:461:in `_create_record'
+activerecord (6.1.4.1) lib/active_record/timestamp.rb:108:in `_create_record'
+activerecord (6.1.4.1) lib/active_record/persistence.rb:900:in `create_or_update'
+activerecord (6.1.4.1) lib/active_record/callbacks.rb:457:in `block in create_or_update'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:106:in `run_callbacks'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:824:in `_run_save_callbacks'
+activerecord (6.1.4.1) lib/active_record/callbacks.rb:457:in `create_or_update'
+activerecord (6.1.4.1) lib/active_record/timestamp.rb:126:in `create_or_update'
+activerecord (6.1.4.1) lib/active_record/persistence.rb:474:in `save'
+activerecord (6.1.4.1) lib/active_record/validations.rb:47:in `save'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:298:in `block in save'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:354:in `block in with_transaction_returning_status'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/database_statements.rb:318:in `transaction'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:350:in `with_transaction_returning_status'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:298:in `save'
+activerecord (6.1.4.1) lib/active_record/suppressor.rb:44:in `save'
+activerecord (6.1.4.1) lib/active_record/associations/has_one_association.rb:70:in `block in replace'
+activerecord (6.1.4.1) lib/active_record/associations/has_one_association.rb:117:in `block in transaction_if'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/database_statements.rb:318:in `transaction'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:209:in `transaction'
+activerecord (6.1.4.1) lib/active_record/associations/has_one_association.rb:117:in `transaction_if'
+activerecord (6.1.4.1) lib/active_record/associations/has_one_association.rb:63:in `replace'
+activerecord (6.1.4.1) lib/active_record/associations/singular_association.rb:17:in `writer'
+activerecord (6.1.4.1) lib/active_record/associations/builder/association.rb:111:in `image_attachment='
+activestorage (6.1.4.1) lib/active_storage/attached/changes/create_one.rb:33:in `public_send'
+activestorage (6.1.4.1) lib/active_storage/attached/changes/create_one.rb:33:in `save'
+activestorage (6.1.4.1) lib/active_storage/attached/model.rb:75:in `block in has_one_attached'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:427:in `instance_exec'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:427:in `block in make_lambda'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:235:in `block in halting_and_conditional'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:516:in `block in invoke_after'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:516:in `each'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:516:in `invoke_after'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:107:in `run_callbacks'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:824:in `_run_save_callbacks'
+activerecord (6.1.4.1) lib/active_record/callbacks.rb:457:in `create_or_update'
+activerecord (6.1.4.1) lib/active_record/timestamp.rb:126:in `create_or_update'
+activerecord (6.1.4.1) lib/active_record/persistence.rb:507:in `save!'
+activerecord (6.1.4.1) lib/active_record/validations.rb:53:in `save!'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:302:in `block in save!'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:354:in `block in with_transaction_returning_status'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/database_statements.rb:318:in `transaction'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:350:in `with_transaction_returning_status'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:302:in `save!'
+activerecord (6.1.4.1) lib/active_record/suppressor.rb:48:in `save!'
+activerecord (6.1.4.1) lib/active_record/associations/collection_association.rb:373:in `insert_record'
+activerecord (6.1.4.1) lib/active_record/associations/has_many_association.rb:58:in `insert_record'
+activerecord (6.1.4.1) lib/active_record/associations/collection_association.rb:360:in `block (2 levels) in _create_record'
+activerecord (6.1.4.1) lib/active_record/associations/collection_association.rb:460:in `replace_on_target'
+activerecord (6.1.4.1) lib/active_record/associations/collection_association.rb:285:in `add_to_target'
+activerecord (6.1.4.1) lib/active_record/associations/collection_association.rb:359:in `block in _create_record'
+activerecord (6.1.4.1) lib/active_record/associations/collection_association.rb:135:in `block in transaction'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/database_statements.rb:318:in `transaction'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:209:in `transaction'
+activerecord (6.1.4.1) lib/active_record/associations/collection_association.rb:134:in `transaction'
+activerecord (6.1.4.1) lib/active_record/associations/collection_association.rb:357:in `_create_record'
+activerecord (6.1.4.1) lib/active_record/associations/has_many_association.rb:137:in `_create_record'
+activerecord (6.1.4.1) lib/active_record/associations/association.rb:209:in `create!'
+activerecord (6.1.4.1) lib/active_record/associations/collection_proxy.rb:364:in `create!'
+activerecord (6.1.4.1) lib/active_record/relation.rb:218:in `block in create_or_find_by!'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/database_statements.rb:320:in `block in transaction'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/transaction.rb:319:in `block in within_new_transaction'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:26:in `block (2 levels) in synchronize'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:25:in `handle_interrupt'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:25:in `block in synchronize'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:21:in `handle_interrupt'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:21:in `synchronize'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/transaction.rb:317:in `within_new_transaction'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/database_statements.rb:320:in `transaction'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:209:in `transaction'
+activerecord (6.1.4.1) lib/active_record/relation/delegation.rb:108:in `public_send'
+activerecord (6.1.4.1) lib/active_record/relation/delegation.rb:108:in `block in method_missing'
+activerecord (6.1.4.1) lib/active_record/relation.rb:406:in `block in scoping'
+activerecord (6.1.4.1) lib/active_record/relation.rb:804:in `_scoping'
+activerecord (6.1.4.1) lib/active_record/relation.rb:406:in `scoping'
+activerecord (6.1.4.1) lib/active_record/associations/collection_proxy.rb:1109:in `scoping'
+activerecord (6.1.4.1) lib/active_record/relation/delegation.rb:108:in `method_missing'
+activerecord (6.1.4.1) lib/active_record/relation.rb:218:in `create_or_find_by!'
+activestorage (6.1.4.1) app/models/active_storage/variant_with_record.rb:45:in `block in create_or_find_record'
+activerecord (6.1.4.1) lib/active_record/connection_handling.rb:388:in `with_role_and_shard'
+activerecord (6.1.4.1) lib/active_record/connection_handling.rb:175:in `connected_to'
+activestorage (6.1.4.1) app/models/active_storage/variant_with_record.rb:44:in `create_or_find_record'
+activestorage (6.1.4.1) app/models/active_storage/variant_with_record.rb:16:in `block in process'
+activestorage (6.1.4.1) app/models/active_storage/variant_with_record.rb:36:in `block (2 levels) in transform_blob'
+activestorage (6.1.4.1) lib/active_storage/transformers/transformer.rb:25:in `transform'
+activestorage (6.1.4.1) app/models/active_storage/variation.rb:56:in `block in transform'
+activesupport (6.1.4.1) lib/active_support/notifications.rb:205:in `instrument'
+activestorage (6.1.4.1) app/models/active_storage/variation.rb:55:in `transform'
+activestorage (6.1.4.1) app/models/active_storage/variant_with_record.rb:35:in `block in transform_blob'
+activestorage (6.1.4.1) lib/active_storage/downloader.rb:15:in `block in open'
+activestorage (6.1.4.1) lib/active_storage/downloader.rb:24:in `open_tempfile'
+activestorage (6.1.4.1) lib/active_storage/downloader.rb:12:in `open'
+activestorage (6.1.4.1) lib/active_storage/service.rb:90:in `open'
+activestorage (6.1.4.1) app/models/active_storage/blob.rb:276:in `open'
+activestorage (6.1.4.1) app/models/active_storage/variant_with_record.rb:34:in `transform_blob'
+activestorage (6.1.4.1) app/models/active_storage/variant_with_record.rb:16:in `process'
+activestorage (6.1.4.1) app/models/active_storage/variant_with_record.rb:11:in `processed'
+activestorage (6.1.4.1) app/controllers/active_storage/representations/base_controller.rb:10:in `set_representation'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:427:in `block in make_lambda'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (6.1.4.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:512:in `block in invoke_before'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:512:in `each'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:512:in `invoke_before'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:115:in `block in run_callbacks'
+actiontext (6.1.4.1) lib/action_text/rendering.rb:20:in `with_renderer'
+actiontext (6.1.4.1) lib/action_text/engine.rb:59:in `block (4 levels) in <class:Engine>'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:126:in `instance_exec'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:137:in `run_callbacks'
+actionpack (6.1.4.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (6.1.4.1) lib/active_support/notifications.rb:203:in `block in instrument'
+activesupport (6.1.4.1) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (6.1.4.1) lib/active_support/notifications.rb:203:in `instrument'
+actionpack (6.1.4.1) lib/action_controller/metal/instrumentation.rb:33:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/params_wrapper.rb:249:in `process_action'
+activerecord (6.1.4.1) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.4.1) lib/abstract_controller/base.rb:165:in `process'
+actionview (6.1.4.1) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.4.1) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.4.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.4.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.4.1) lib/rails/engine.rb:539:in `call'
+puma (5.5.2) lib/puma/configuration.rb:249:in `call'
+puma (5.5.2) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.5.2) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.5.2) lib/puma/request.rb:76:in `handle_request'
+puma (5.5.2) lib/puma/server.rb:447:in `process_client'
+puma (5.5.2) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateActiveStorageTables (20211113224808)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" bigserial primary key, "key" character varying NOT NULL, "filename" character varying NOT NULL, "content_type" character varying, "metadata" text, "service_name" character varying NOT NULL, "byte_size" bigint NOT NULL, "checksum" character varying NOT NULL, "created_at" timestamp NOT NULL)[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (13.0ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" bigserial primary key, "name" character varying NOT NULL, "record_type" character varying NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" timestamp NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" bigserial primary key, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113224808"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to EnableUuid (20211113225114)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (7.0ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "pgcrypto"[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113225114"]]
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateImages (20211113225230)
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE TABLE "images" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "email" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113225230"]]
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeActiveStorageRecordReferencesToUuid (20211113225531)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "active_storage_attachments" DROP COLUMN "record_id"[0m
+  [1m[35m (1.5ms)[0m  [1m[35mALTER TABLE "active_storage_attachments" ADD "record_id" uuid NOT NULL[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113225531"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-11-13 23:00:02.094056"], ["updated_at", "2021-11-13 23:00:02.094056"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/images/compress" for 127.0.0.1 at 2021-11-14 02:00:37 +0300
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ImagesController#compress as */*
+  Parameters: {"image"=>#<ActionDispatch::Http::UploadedFile:0x0000557815330418 @tempfile=#<Tempfile:/tmp/RackMultipart20211114-34034-6pxb6c.jpg>, @original_filename="0e97765172ca9089aa95-1.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image\"; filename=\"0e97765172ca9089aa95-1.jpg\"\r\nContent-Type: image/jpeg\r\n">, "email"=>"asdsdbc@mail.com"}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Create (3.2ms)[0m  [1m[32mINSERT INTO "images" ("email", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["email", "asdsdbc@mail.com"], ["created_at", "2021-11-13 23:00:38.338718"], ["updated_at", "2021-11-13 23:00:38.338718"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Load (1.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", "5c59f553-87a7-4a9a-ab3c-4ea14fbeb734"], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", "5c59f553-87a7-4a9a-ab3c-4ea14fbeb734"], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Create (2.5ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "6fhec6kg6j9h1av6h0dpsq2erjld"], ["filename", "0e97765172ca9089aa95-1.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 274899], ["checksum", "zg1Grz9DNXkafrezItXC3w=="], ["created_at", "2021-11-13 23:00:38.421456"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Create (4.8ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "blob_id", "created_at", "record_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "image"], ["record_type", "Image"], ["blob_id", 1], ["created_at", "2021-11-13 23:00:38.430665"], ["record_id", "5c59f553-87a7-4a9a-ab3c-4ea14fbeb734"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Update (0.5ms)[0m  [1m[33mUPDATE "images" SET "updated_at" = $1 WHERE "images"."id" = $2[0m  [["updated_at", "2021-11-13 23:00:38.441174"], ["id", "5c59f553-87a7-4a9a-ab3c-4ea14fbeb734"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+[36m  Disk Storage (1.5ms) [0m[32mUploaded file to key: 6fhec6kg6j9h1av6h0dpsq2erjld (checksum: zg1Grz9DNXkafrezItXC3w==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 47f50270-710d-4932-97c5-b2b120eff04f) to Async(default) with arguments: #<GlobalID:0x00007f46e800ca18 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/1>>
+Completed 200 OK in 207ms (Views: 0.4ms | ActiveRecord: 40.2ms | Allocations: 34379)
+
+
+  [1m[36mActiveStorage::Blob Load (1.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [47f50270-710d-4932-97c5-b2b120eff04f] Performing ActiveStorage::AnalyzeJob (Job ID: 47f50270-710d-4932-97c5-b2b120eff04f) from Async(default) enqueued at 2021-11-13T23:00:38Z with arguments: #<GlobalID:0x00007f46e8051cf8 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/1>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [47f50270-710d-4932-97c5-b2b120eff04f] [36m  Disk Storage (0.7ms) [0m[34mDownloaded file from key: 6fhec6kg6j9h1av6h0dpsq2erjld[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [47f50270-710d-4932-97c5-b2b120eff04f]   [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [47f50270-710d-4932-97c5-b2b120eff04f]   [1m[36mActiveStorage::Blob Update (0.5ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"width\":1100,\"height\":733,\"analyzed\":true}"], ["id", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [47f50270-710d-4932-97c5-b2b120eff04f]   [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [47f50270-710d-4932-97c5-b2b120eff04f] Performed ActiveStorage::AnalyzeJob (Job ID: 47f50270-710d-4932-97c5-b2b120eff04f) from Async(default) in 149.79ms
+  [1m[36mImage Load (0.5ms)[0m  [1m[34mSELECT "images".* FROM "images" ORDER BY "images"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/images/5c59f553-87a7-4a9a-ab3c-4ea14fbeb734/download" for 127.0.0.1 at 2021-11-14 02:01:03 +0300
+Processing by ImagesController#download as */*
+  Parameters: {"id"=>"5c59f553-87a7-4a9a-ab3c-4ea14fbeb734", "image"=>{}}
+  [1m[36mImage Load (0.3ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT $2[0m  [["id", "5c59f553-87a7-4a9a-ab3c-4ea14fbeb734"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:22:in `set_image'
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", "5c59f553-87a7-4a9a-ab3c-4ea14fbeb734"], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:16:in `download'
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:16:in `download'
+Completed 200 OK in 21ms (Views: 0.6ms | ActiveRecord: 1.5ms | Allocations: 3406)
+
+
+Started GET "/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--38ebc5b86cac5014dd479533ec3f8829a20f615f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2Q25OaGRtVnlld1k2REhGMVlXeHBkSGxwRHc9PSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--55cc9331fba660900747e58bec5a282e6b7990a1/0e97765172ca9089aa95-1.jpg" for 127.0.0.1 at 2021-11-14 02:01:17 +0300
+Processing by ActiveStorage::Representations::RedirectController#show as JPEG
+  Parameters: {"signed_blob_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--38ebc5b86cac5014dd479533ec3f8829a20f615f", "variation_key"=>"[FILTERED]", "filename"=>"0e97765172ca9089aa95-1"}
+  [1m[36mActiveStorage::Blob Load (1.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mActiveStorage::VariantRecord Load (5.6ms)[0m  [1m[34mSELECT "active_storage_variant_records".* FROM "active_storage_variant_records" WHERE "active_storage_variant_records"."blob_id" = $1 AND "active_storage_variant_records"."variation_digest" = $2 LIMIT $3[0m  [["blob_id", 1], ["variation_digest", "cGOfhfbZsle5Q7mU0qHuxFpt3ic="], ["LIMIT", 1]]
+[36m  Disk Storage (0.5ms) [0m[34mDownloaded file from key: 6fhec6kg6j9h1av6h0dpsq2erjld[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveStorage::VariantRecord Create (2.9ms)[0m  [1m[32mINSERT INTO "active_storage_variant_records" ("blob_id", "variation_digest") VALUES ($1, $2) RETURNING "id"[0m  [["blob_id", 1], ["variation_digest", "cGOfhfbZsle5Q7mU0qHuxFpt3ic="]]
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", nil], ["record_type", "ActiveStorage::VariantRecord"], ["name", "image"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", nil], ["record_type", "ActiveStorage::VariantRecord"], ["name", "image"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Blob Create (0.5ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "zu1mkboi66sgsdchxv4lwzwjf92q"], ["filename", "0e97765172ca9089aa95-1.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 16737], ["checksum", "MrVoCILBI0YK3w9VVERPQQ=="], ["created_at", "2021-11-13 23:01:17.511172"]]
+  [1m[36mActiveStorage::Attachment Create (2.2ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "blob_id", "created_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "image"], ["record_type", "ActiveStorage::VariantRecord"], ["blob_id", 2], ["created_at", "2021-11-13 23:01:17.516248"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 182ms (ActiveRecord: 22.9ms | Allocations: 17227)
+
+
+  
+ActiveRecord::NotNullViolation (PG::NotNullViolation: ERROR:  null value in column "record_id" violates not-null constraint
+DETAIL:  Failing row contains (2, image, ActiveStorage::VariantRecord, 2, 2021-11-13 23:01:17.516248, null).
+):
+  
+activerecord (6.1.4.1) lib/active_record/connection_adapters/postgresql_adapter.rb:672:in `exec_params'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/postgresql_adapter.rb:672:in `block (2 levels) in exec_no_cache'
+activesupport (6.1.4.1) lib/active_support/dependencies/interlock.rb:48:in `block in permit_concurrent_loads'
+activesupport (6.1.4.1) lib/active_support/concurrency/share_lock.rb:187:in `yield_shares'
+activesupport (6.1.4.1) lib/active_support/dependencies/interlock.rb:47:in `permit_concurrent_loads'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/postgresql_adapter.rb:671:in `block in exec_no_cache'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract_adapter.rb:696:in `block (2 levels) in log'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:26:in `block (2 levels) in synchronize'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:25:in `handle_interrupt'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:25:in `block in synchronize'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:21:in `handle_interrupt'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:21:in `synchronize'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract_adapter.rb:695:in `block in log'
+activesupport (6.1.4.1) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract_adapter.rb:687:in `log'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/postgresql_adapter.rb:670:in `exec_no_cache'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/postgresql_adapter.rb:649:in `execute_and_clear'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:53:in `exec_query'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/database_statements.rb:136:in `exec_insert'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/postgresql/database_statements.rb:91:in `exec_insert'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/database_statements.rb:171:in `insert'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/query_cache.rb:22:in `insert'
+activerecord (6.1.4.1) lib/active_record/persistence.rb:375:in `_insert_record'
+activerecord (6.1.4.1) lib/active_record/persistence.rb:929:in `_create_record'
+activerecord (6.1.4.1) lib/active_record/counter_cache.rb:166:in `_create_record'
+activerecord (6.1.4.1) lib/active_record/locking/optimistic.rb:79:in `_create_record'
+activerecord (6.1.4.1) lib/active_record/attribute_methods/dirty.rb:201:in `_create_record'
+activerecord (6.1.4.1) lib/active_record/callbacks.rb:461:in `block in _create_record'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:106:in `run_callbacks'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:824:in `_run_create_callbacks'
+activerecord (6.1.4.1) lib/active_record/callbacks.rb:461:in `_create_record'
+activerecord (6.1.4.1) lib/active_record/timestamp.rb:108:in `_create_record'
+activerecord (6.1.4.1) lib/active_record/persistence.rb:900:in `create_or_update'
+activerecord (6.1.4.1) lib/active_record/callbacks.rb:457:in `block in create_or_update'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:106:in `run_callbacks'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:824:in `_run_save_callbacks'
+activerecord (6.1.4.1) lib/active_record/callbacks.rb:457:in `create_or_update'
+activerecord (6.1.4.1) lib/active_record/timestamp.rb:126:in `create_or_update'
+activerecord (6.1.4.1) lib/active_record/persistence.rb:474:in `save'
+activerecord (6.1.4.1) lib/active_record/validations.rb:47:in `save'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:298:in `block in save'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:354:in `block in with_transaction_returning_status'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/database_statements.rb:318:in `transaction'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:350:in `with_transaction_returning_status'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:298:in `save'
+activerecord (6.1.4.1) lib/active_record/suppressor.rb:44:in `save'
+activerecord (6.1.4.1) lib/active_record/associations/has_one_association.rb:70:in `block in replace'
+activerecord (6.1.4.1) lib/active_record/associations/has_one_association.rb:117:in `block in transaction_if'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/database_statements.rb:318:in `transaction'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:209:in `transaction'
+activerecord (6.1.4.1) lib/active_record/associations/has_one_association.rb:117:in `transaction_if'
+activerecord (6.1.4.1) lib/active_record/associations/has_one_association.rb:63:in `replace'
+activerecord (6.1.4.1) lib/active_record/associations/singular_association.rb:17:in `writer'
+activerecord (6.1.4.1) lib/active_record/associations/builder/association.rb:111:in `image_attachment='
+activestorage (6.1.4.1) lib/active_storage/attached/changes/create_one.rb:33:in `public_send'
+activestorage (6.1.4.1) lib/active_storage/attached/changes/create_one.rb:33:in `save'
+activestorage (6.1.4.1) lib/active_storage/attached/model.rb:75:in `block in has_one_attached'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:427:in `instance_exec'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:427:in `block in make_lambda'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:235:in `block in halting_and_conditional'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:516:in `block in invoke_after'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:516:in `each'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:516:in `invoke_after'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:107:in `run_callbacks'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:824:in `_run_save_callbacks'
+activerecord (6.1.4.1) lib/active_record/callbacks.rb:457:in `create_or_update'
+activerecord (6.1.4.1) lib/active_record/timestamp.rb:126:in `create_or_update'
+activerecord (6.1.4.1) lib/active_record/persistence.rb:507:in `save!'
+activerecord (6.1.4.1) lib/active_record/validations.rb:53:in `save!'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:302:in `block in save!'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:354:in `block in with_transaction_returning_status'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/database_statements.rb:318:in `transaction'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:350:in `with_transaction_returning_status'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:302:in `save!'
+activerecord (6.1.4.1) lib/active_record/suppressor.rb:48:in `save!'
+activerecord (6.1.4.1) lib/active_record/associations/collection_association.rb:373:in `insert_record'
+activerecord (6.1.4.1) lib/active_record/associations/has_many_association.rb:58:in `insert_record'
+activerecord (6.1.4.1) lib/active_record/associations/collection_association.rb:360:in `block (2 levels) in _create_record'
+activerecord (6.1.4.1) lib/active_record/associations/collection_association.rb:460:in `replace_on_target'
+activerecord (6.1.4.1) lib/active_record/associations/collection_association.rb:285:in `add_to_target'
+activerecord (6.1.4.1) lib/active_record/associations/collection_association.rb:359:in `block in _create_record'
+activerecord (6.1.4.1) lib/active_record/associations/collection_association.rb:135:in `block in transaction'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/database_statements.rb:318:in `transaction'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:209:in `transaction'
+activerecord (6.1.4.1) lib/active_record/associations/collection_association.rb:134:in `transaction'
+activerecord (6.1.4.1) lib/active_record/associations/collection_association.rb:357:in `_create_record'
+activerecord (6.1.4.1) lib/active_record/associations/has_many_association.rb:137:in `_create_record'
+activerecord (6.1.4.1) lib/active_record/associations/association.rb:209:in `create!'
+activerecord (6.1.4.1) lib/active_record/associations/collection_proxy.rb:364:in `create!'
+activerecord (6.1.4.1) lib/active_record/relation.rb:218:in `block in create_or_find_by!'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/database_statements.rb:320:in `block in transaction'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/transaction.rb:319:in `block in within_new_transaction'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:26:in `block (2 levels) in synchronize'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:25:in `handle_interrupt'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:25:in `block in synchronize'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:21:in `handle_interrupt'
+activesupport (6.1.4.1) lib/active_support/concurrency/load_interlock_aware_monitor.rb:21:in `synchronize'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/transaction.rb:317:in `within_new_transaction'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/database_statements.rb:320:in `transaction'
+activerecord (6.1.4.1) lib/active_record/transactions.rb:209:in `transaction'
+activerecord (6.1.4.1) lib/active_record/relation/delegation.rb:108:in `public_send'
+activerecord (6.1.4.1) lib/active_record/relation/delegation.rb:108:in `block in method_missing'
+activerecord (6.1.4.1) lib/active_record/relation.rb:406:in `block in scoping'
+activerecord (6.1.4.1) lib/active_record/relation.rb:804:in `_scoping'
+activerecord (6.1.4.1) lib/active_record/relation.rb:406:in `scoping'
+activerecord (6.1.4.1) lib/active_record/associations/collection_proxy.rb:1109:in `scoping'
+activerecord (6.1.4.1) lib/active_record/relation/delegation.rb:108:in `method_missing'
+activerecord (6.1.4.1) lib/active_record/relation.rb:218:in `create_or_find_by!'
+activestorage (6.1.4.1) app/models/active_storage/variant_with_record.rb:45:in `block in create_or_find_record'
+activerecord (6.1.4.1) lib/active_record/connection_handling.rb:388:in `with_role_and_shard'
+activerecord (6.1.4.1) lib/active_record/connection_handling.rb:175:in `connected_to'
+activestorage (6.1.4.1) app/models/active_storage/variant_with_record.rb:44:in `create_or_find_record'
+activestorage (6.1.4.1) app/models/active_storage/variant_with_record.rb:16:in `block in process'
+activestorage (6.1.4.1) app/models/active_storage/variant_with_record.rb:36:in `block (2 levels) in transform_blob'
+activestorage (6.1.4.1) lib/active_storage/transformers/transformer.rb:25:in `transform'
+activestorage (6.1.4.1) app/models/active_storage/variation.rb:56:in `block in transform'
+activesupport (6.1.4.1) lib/active_support/notifications.rb:205:in `instrument'
+activestorage (6.1.4.1) app/models/active_storage/variation.rb:55:in `transform'
+activestorage (6.1.4.1) app/models/active_storage/variant_with_record.rb:35:in `block in transform_blob'
+activestorage (6.1.4.1) lib/active_storage/downloader.rb:15:in `block in open'
+activestorage (6.1.4.1) lib/active_storage/downloader.rb:24:in `open_tempfile'
+activestorage (6.1.4.1) lib/active_storage/downloader.rb:12:in `open'
+activestorage (6.1.4.1) lib/active_storage/service.rb:90:in `open'
+activestorage (6.1.4.1) app/models/active_storage/blob.rb:276:in `open'
+activestorage (6.1.4.1) app/models/active_storage/variant_with_record.rb:34:in `transform_blob'
+activestorage (6.1.4.1) app/models/active_storage/variant_with_record.rb:16:in `process'
+activestorage (6.1.4.1) app/models/active_storage/variant_with_record.rb:11:in `processed'
+activestorage (6.1.4.1) app/controllers/active_storage/representations/base_controller.rb:10:in `set_representation'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:427:in `block in make_lambda'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (6.1.4.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:512:in `block in invoke_before'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:512:in `each'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:512:in `invoke_before'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:115:in `block in run_callbacks'
+actiontext (6.1.4.1) lib/action_text/rendering.rb:20:in `with_renderer'
+actiontext (6.1.4.1) lib/action_text/engine.rb:59:in `block (4 levels) in <class:Engine>'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:126:in `instance_exec'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:137:in `run_callbacks'
+actionpack (6.1.4.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (6.1.4.1) lib/active_support/notifications.rb:203:in `block in instrument'
+activesupport (6.1.4.1) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (6.1.4.1) lib/active_support/notifications.rb:203:in `instrument'
+actionpack (6.1.4.1) lib/action_controller/metal/instrumentation.rb:33:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/params_wrapper.rb:249:in `process_action'
+activerecord (6.1.4.1) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.4.1) lib/abstract_controller/base.rb:165:in `process'
+actionview (6.1.4.1) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.4.1) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.4.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.4.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.4.1) lib/rails/engine.rb:539:in `call'
+puma (5.5.2) lib/puma/configuration.rb:249:in `call'
+puma (5.5.2) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.5.2) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.5.2) lib/puma/request.rb:76:in `handle_request'
+puma (5.5.2) lib/puma/server.rb:447:in `process_client'
+puma (5.5.2) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddServiceNameToActiveStorageBlobs (20211113230721)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113230721"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateActiveStorageVariantRecords (20211113230722)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddServiceNameToActiveStorageBlobs (20211113230721)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "active_storage_blobs" DROP COLUMN "service_name"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.5ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20211113230721"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to ChangeActiveStorageRecordReferencesToUuid (20211113225531)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddServiceNameToActiveStorageBlobs (20211113230721)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "active_storage_blobs" ADD "service_name" character varying[0m
+  [1m[36mActiveStorage::Blob Update All (1.4ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "service_name" = $1[0m  [["service_name", "local"]]
+  [1m[35m (2.7ms)[0m  [1m[35mALTER TABLE "active_storage_blobs" ALTER COLUMN "service_name" TYPE character varying, ALTER COLUMN "service_name" SET NOT NULL[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113230721"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateActiveStorageVariantRecords (20211113230722)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateActiveStorageTables (20211113224808)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" bigserial primary key, "key" character varying NOT NULL, "filename" character varying NOT NULL, "content_type" character varying, "metadata" text, "service_name" character varying NOT NULL, "byte_size" bigint NOT NULL, "checksum" character varying NOT NULL, "created_at" timestamp NOT NULL)[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" bigserial primary key, "name" character varying NOT NULL, "record_type" character varying NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" timestamp NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" bigserial primary key, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113224808"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to EnableUuid (20211113225114)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (6.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "pgcrypto"[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113225114"]]
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateImages (20211113225230)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE TABLE "images" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "email" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113225230"]]
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeActiveStorageRecordReferencesToUuid (20211113225531)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "active_storage_attachments" DROP COLUMN "record_id"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "active_storage_attachments" ADD "record_id" uuid NOT NULL[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113225531"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddServiceNameToActiveStorageBlobs (20211113230721)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113230721"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateActiveStorageVariantRecords (20211113230722)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateActiveStorageVariantRecords (20211113230722)
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-11-13 23:12:40.554742"], ["updated_at", "2021-11-13 23:12:40.554742"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateActiveStorageTables (20211113224808)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" bigserial primary key, "key" character varying NOT NULL, "filename" character varying NOT NULL, "content_type" character varying, "metadata" text, "service_name" character varying NOT NULL, "byte_size" bigint NOT NULL, "checksum" character varying NOT NULL, "created_at" timestamp NOT NULL)[0m
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (12.9ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" bigserial primary key, "name" character varying NOT NULL, "record_type" character varying NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" timestamp NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to EnableUuid (20211113225114)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (5.8ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "pgcrypto"[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113225114"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateImages (20211113225230)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.1ms)[0m  [1m[35mCREATE TABLE "images" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "email" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113225230"]]
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateActiveStorageTables (20211113231441)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" bigserial primary key, "key" character varying NOT NULL, "filename" character varying NOT NULL, "content_type" character varying, "metadata" text, "service_name" character varying NOT NULL, "byte_size" bigint NOT NULL, "checksum" character varying NOT NULL, "created_at" timestamp NOT NULL)[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (8.9ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" bigserial primary key, "name" character varying NOT NULL, "record_type" character varying NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" timestamp NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (9.2ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113231441"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-11-13 23:15:20.807146"], ["updated_at", "2021-11-13 23:15:20.807146"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/images/compress" for 127.0.0.1 at 2021-11-14 02:15:34 +0300
+  [1m[35m (11.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ImagesController#compress as */*
+  Parameters: {"image"=>#<ActionDispatch::Http::UploadedFile:0x0000559ff61a2070 @tempfile=#<Tempfile:/tmp/RackMultipart20211114-41925-oar2h5.jpg>, @original_filename="0e97765172ca9089aa95-1.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image\"; filename=\"0e97765172ca9089aa95-1.jpg\"\r\nContent-Type: image/jpeg\r\n">, "email"=>"asdsdbc@mail.com"}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Create (3.1ms)[0m  [1m[32mINSERT INTO "images" ("email", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["email", "asdsdbc@mail.com"], ["created_at", "2021-11-13 23:15:34.902444"], ["updated_at", "2021-11-13 23:15:34.902444"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Load (0.9ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", nil], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", nil], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Create (1.2ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "ezxli47p52kpp2q6wtrabak1dgvd"], ["filename", "0e97765172ca9089aa95-1.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 274899], ["checksum", "zg1Grz9DNXkafrezItXC3w=="], ["created_at", "2021-11-13 23:15:34.995209"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Create (1.8ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "image"], ["record_type", "Image"], ["record_id", 0], ["blob_id", 1], ["created_at", "2021-11-13 23:15:35.004258"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Update (0.6ms)[0m  [1m[33mUPDATE "active_storage_attachments" SET "record_id" = $1 WHERE "active_storage_attachments"."id" = $2[0m  [["record_id", 0], ["id", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Load (0.9ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Update (1.1ms)[0m  [1m[33mUPDATE "images" SET "updated_at" = $1 WHERE "images"."id" = $2[0m  [["updated_at", "2021-11-13 23:15:35.034125"], ["id", "f614b0ae-430a-48af-afa9-ecfd6a1e9bf3"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+[36m  Disk Storage (1.7ms) [0m[32mUploaded file to key: ezxli47p52kpp2q6wtrabak1dgvd (checksum: zg1Grz9DNXkafrezItXC3w==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: b317248e-afb6-451f-8e8e-2c6aba3da5a6) to Async(default) with arguments: #<GlobalID:0x00007efdacc29ee8 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/1>>
+Completed 200 OK in 381ms (Views: 0.6ms | ActiveRecord: 34.2ms | Allocations: 36109)
+
+
+  [1m[36mActiveStorage::Blob Load (0.8ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [b317248e-afb6-451f-8e8e-2c6aba3da5a6] Performing ActiveStorage::AnalyzeJob (Job ID: b317248e-afb6-451f-8e8e-2c6aba3da5a6) from Async(default) enqueued at 2021-11-13T23:15:35Z with arguments: #<GlobalID:0x00007efd88049bd8 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/1>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [b317248e-afb6-451f-8e8e-2c6aba3da5a6] [36m  Disk Storage (0.5ms) [0m[34mDownloaded file from key: ezxli47p52kpp2q6wtrabak1dgvd[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [b317248e-afb6-451f-8e8e-2c6aba3da5a6]   [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [b317248e-afb6-451f-8e8e-2c6aba3da5a6]   [1m[36mActiveStorage::Blob Update (0.6ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"width\":1100,\"height\":733,\"analyzed\":true}"], ["id", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [b317248e-afb6-451f-8e8e-2c6aba3da5a6]   [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [b317248e-afb6-451f-8e8e-2c6aba3da5a6] Performed ActiveStorage::AnalyzeJob (Job ID: b317248e-afb6-451f-8e8e-2c6aba3da5a6) from Async(default) in 168.81ms
+  [1m[36mImage Load (0.3ms)[0m  [1m[34mSELECT "images".* FROM "images" ORDER BY "images"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/images/f614b0ae-430a-48af-afa9-ecfd6a1e9bf3/download" for 127.0.0.1 at 2021-11-14 02:16:06 +0300
+Processing by ImagesController#download as */*
+  Parameters: {"id"=>"f614b0ae-430a-48af-afa9-ecfd6a1e9bf3", "image"=>{}}
+  [1m[36mImage Load (0.5ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT $2[0m  [["id", "f614b0ae-430a-48af-afa9-ecfd6a1e9bf3"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:22:in `set_image'
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", nil], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:16:in `download'
+Completed 200 OK in 20ms (Views: 1.7ms | ActiveRecord: 1.8ms | Allocations: 2027)
+
+
+  [1m[36mImage Load (0.5ms)[0m  [1m[34mSELECT "images".* FROM "images" ORDER BY "images"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mImage Load (0.5ms)[0m  [1m[34mSELECT "images".* FROM "images" ORDER BY "images"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (3.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", nil], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateActiveStorageTables (20211113231441)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.8ms)[0m  [1m[35mDROP TABLE "active_storage_variant_records"[0m
+  [1m[35m (1.6ms)[0m  [1m[35mDROP TABLE "active_storage_attachments"[0m
+  [1m[35m (1.2ms)[0m  [1m[35mDROP TABLE "active_storage_blobs"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (1.0ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20211113231441"]]
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateActiveStorageTables (20211113231441)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (9.8ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" bigserial primary key, "key" character varying NOT NULL, "filename" character varying NOT NULL, "content_type" character varying, "metadata" text, "service_name" character varying NOT NULL, "byte_size" bigint NOT NULL, "checksum" character varying NOT NULL, "created_at" timestamp NOT NULL)[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (11.9ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "name" character varying NOT NULL, "record_type" character varying NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" timestamp NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (10.2ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113231441"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/images/compress" for 127.0.0.1 at 2021-11-14 02:18:15 +0300
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ImagesController#compress as */*
+  Parameters: {"image"=>#<ActionDispatch::Http::UploadedFile:0x000055fe500f2568 @tempfile=#<Tempfile:/tmp/RackMultipart20211114-43666-cou66n.jpg>, @original_filename="0e97765172ca9089aa95-1.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image\"; filename=\"0e97765172ca9089aa95-1.jpg\"\r\nContent-Type: image/jpeg\r\n">, "email"=>"asdsdbc@mail.com"}
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Create (4.4ms)[0m  [1m[32mINSERT INTO "images" ("email", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["email", "asdsdbc@mail.com"], ["created_at", "2021-11-13 23:18:15.759654"], ["updated_at", "2021-11-13 23:18:15.759654"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Load (4.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 75], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 75], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Create (1.8ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "xbqfcuqb01mb6xo0q0sn1bf1skb8"], ["filename", "0e97765172ca9089aa95-1.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 274899], ["checksum", "zg1Grz9DNXkafrezItXC3w=="], ["created_at", "2021-11-13 23:18:15.880657"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Create (1.1ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "image"], ["record_type", "Image"], ["record_id", 75], ["blob_id", 1], ["created_at", "2021-11-13 23:18:15.892353"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Update (1.5ms)[0m  [1m[33mUPDATE "images" SET "updated_at" = $1 WHERE "images"."id" = $2[0m  [["updated_at", "2021-11-13 23:18:15.897661"], ["id", "75afd461-a685-4e72-8eaa-6ac5e0d41bf8"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+[36m  Disk Storage (2.9ms) [0m[32mUploaded file to key: xbqfcuqb01mb6xo0q0sn1bf1skb8 (checksum: zg1Grz9DNXkafrezItXC3w==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 8703fbba-6142-4d14-aaf6-138ee2fa3fb3) to Async(default) with arguments: #<GlobalID:0x000055fe506455d8 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/1>>
+Completed 200 OK in 435ms (Views: 0.4ms | ActiveRecord: 41.6ms | Allocations: 34416)
+
+
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [8703fbba-6142-4d14-aaf6-138ee2fa3fb3] Performing ActiveStorage::AnalyzeJob (Job ID: 8703fbba-6142-4d14-aaf6-138ee2fa3fb3) from Async(default) enqueued at 2021-11-13T23:18:15Z with arguments: #<GlobalID:0x00007f5ba80445b0 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/1>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [8703fbba-6142-4d14-aaf6-138ee2fa3fb3] [36m  Disk Storage (0.8ms) [0m[34mDownloaded file from key: xbqfcuqb01mb6xo0q0sn1bf1skb8[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [8703fbba-6142-4d14-aaf6-138ee2fa3fb3]   [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [8703fbba-6142-4d14-aaf6-138ee2fa3fb3]   [1m[36mActiveStorage::Blob Update (1.0ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"width\":1100,\"height\":733,\"analyzed\":true}"], ["id", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [8703fbba-6142-4d14-aaf6-138ee2fa3fb3]   [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [8703fbba-6142-4d14-aaf6-138ee2fa3fb3] Performed ActiveStorage::AnalyzeJob (Job ID: 8703fbba-6142-4d14-aaf6-138ee2fa3fb3) from Async(default) in 160.85ms
+  [1m[36mImage Load (0.4ms)[0m  [1m[34mSELECT "images".* FROM "images" ORDER BY "images"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", nil], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateActiveStorageTables (20211113231441)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.4ms)[0m  [1m[35mDROP TABLE "active_storage_variant_records"[0m
+  [1m[35m (1.6ms)[0m  [1m[35mDROP TABLE "active_storage_attachments"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mDROP TABLE "active_storage_blobs"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.8ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20211113231441"]]
+  [1m[36mTRANSACTION (3.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateActiveStorageTables (20211113231441)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.7ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "key" character varying NOT NULL, "filename" character varying NOT NULL, "content_type" character varying, "metadata" text, "service_name" character varying NOT NULL, "byte_size" bigint NOT NULL, "checksum" character varying NOT NULL, "created_at" timestamp NOT NULL)[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "name" character varying NOT NULL, "record_type" character varying NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" timestamp NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateActiveStorageTables (20211113231441)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" bigserial primary key, "key" character varying NOT NULL, "filename" character varying NOT NULL, "content_type" character varying, "metadata" text, "service_name" character varying NOT NULL, "byte_size" bigint NOT NULL, "checksum" character varying NOT NULL, "created_at" timestamp NOT NULL)[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "name" character varying NOT NULL, "record_type" character varying NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" timestamp NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113231441"]]
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateActiveStorageTables (20211113231441)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.5ms)[0m  [1m[35mDROP TABLE "active_storage_variant_records"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mDROP TABLE "active_storage_attachments"[0m
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE "active_storage_blobs"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.6ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20211113231441"]]
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateActiveStorageTables (20211113231441)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" bigserial primary key, "key" character varying NOT NULL, "filename" character varying NOT NULL, "content_type" character varying, "metadata" text, "service_name" character varying NOT NULL, "byte_size" bigint NOT NULL, "checksum" character varying NOT NULL, "created_at" timestamp NOT NULL)[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (15.5ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" bigserial primary key, "name" character varying NOT NULL, "record_type" character varying NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" timestamp NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113231441"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeActiveStorageRecordReferencesToUuid (20211113232238)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "active_storage_attachments" DROP COLUMN "record_id"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "active_storage_attachments" ADD "record_id" uuid NOT NULL[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113232238"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/images/compress" for 127.0.0.1 at 2021-11-14 02:23:16 +0300
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ImagesController#compress as */*
+  Parameters: {"image"=>#<ActionDispatch::Http::UploadedFile:0x000055f7afca56a0 @tempfile=#<Tempfile:/tmp/RackMultipart20211114-47131-guryaf.jpg>, @original_filename="0e97765172ca9089aa95-1.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image\"; filename=\"0e97765172ca9089aa95-1.jpg\"\r\nContent-Type: image/jpeg\r\n">, "email"=>"asdsdbc@mail.com"}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Create (2.5ms)[0m  [1m[32mINSERT INTO "images" ("email", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["email", "asdsdbc@mail.com"], ["created_at", "2021-11-13 23:23:17.281448"], ["updated_at", "2021-11-13 23:23:17.281448"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Load (1.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", "6ad97a79-9753-4e69-a255-2c3e5d94f9d1"], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", "6ad97a79-9753-4e69-a255-2c3e5d94f9d1"], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Create (1.2ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "phqmkm9z8ueqf7zchqenpevvaehp"], ["filename", "0e97765172ca9089aa95-1.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 274899], ["checksum", "zg1Grz9DNXkafrezItXC3w=="], ["created_at", "2021-11-13 23:23:17.375767"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Create (2.9ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "blob_id", "created_at", "record_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "image"], ["record_type", "Image"], ["blob_id", 1], ["created_at", "2021-11-13 23:23:17.383019"], ["record_id", "6ad97a79-9753-4e69-a255-2c3e5d94f9d1"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Update (0.9ms)[0m  [1m[33mUPDATE "images" SET "updated_at" = $1 WHERE "images"."id" = $2[0m  [["updated_at", "2021-11-13 23:23:17.391911"], ["id", "6ad97a79-9753-4e69-a255-2c3e5d94f9d1"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+[36m  Disk Storage (4.1ms) [0m[32mUploaded file to key: phqmkm9z8ueqf7zchqenpevvaehp (checksum: zg1Grz9DNXkafrezItXC3w==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 061c6daa-72c2-417b-b7cb-fe9da48d39c1) to Async(default) with arguments: #<GlobalID:0x000055f7b020ae38 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/1>>
+Completed 200 OK in 355ms (Views: 0.4ms | ActiveRecord: 35.7ms | Allocations: 34405)
+
+
+  [1m[36mActiveStorage::Blob Load (0.8ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [061c6daa-72c2-417b-b7cb-fe9da48d39c1] Performing ActiveStorage::AnalyzeJob (Job ID: 061c6daa-72c2-417b-b7cb-fe9da48d39c1) from Async(default) enqueued at 2021-11-13T23:23:17Z with arguments: #<GlobalID:0x00007f87e80470c8 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/1>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [061c6daa-72c2-417b-b7cb-fe9da48d39c1] [36m  Disk Storage (0.4ms) [0m[34mDownloaded file from key: phqmkm9z8ueqf7zchqenpevvaehp[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [061c6daa-72c2-417b-b7cb-fe9da48d39c1]   [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [061c6daa-72c2-417b-b7cb-fe9da48d39c1]   [1m[36mActiveStorage::Blob Update (1.3ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"width\":1100,\"height\":733,\"analyzed\":true}"], ["id", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [061c6daa-72c2-417b-b7cb-fe9da48d39c1]   [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [061c6daa-72c2-417b-b7cb-fe9da48d39c1] Performed ActiveStorage::AnalyzeJob (Job ID: 061c6daa-72c2-417b-b7cb-fe9da48d39c1) from Async(default) in 204.15ms
+  [1m[36mImage Load (0.4ms)[0m  [1m[34mSELECT "images".* FROM "images" ORDER BY "images"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", "f614b0ae-430a-48af-afa9-ecfd6a1e9bf3"], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+Started POST "/images/compress" for 127.0.0.1 at 2021-11-14 02:23:45 +0300
+Processing by ImagesController#compress as */*
+  Parameters: {"image"=>#<ActionDispatch::Http::UploadedFile:0x00007f88140048f0 @tempfile=#<Tempfile:/tmp/RackMultipart20211114-47131-dgcww0.jpg>, @original_filename="3509.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image\"; filename=\"3509.jpg\"\r\nContent-Type: image/jpeg\r\n">, "email"=>"asdsdbc@mail.com"}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Create (0.8ms)[0m  [1m[32mINSERT INTO "images" ("email", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["email", "asdsdbc@mail.com"], ["created_at", "2021-11-13 23:23:45.078922"], ["updated_at", "2021-11-13 23:23:45.078922"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Load (0.9ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", "5a515447-a016-4ea9-b932-751fc67e0728"], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Load (2.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", "5a515447-a016-4ea9-b932-751fc67e0728"], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Create (2.7ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "sct5d0sxz9n4ecjd196gz2oknz0r"], ["filename", "3509.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 220016], ["checksum", "eJz8dXlcQn92pZwLTW8daQ=="], ["created_at", "2021-11-13 23:23:45.111995"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Create (0.9ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "blob_id", "created_at", "record_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "image"], ["record_type", "Image"], ["blob_id", 2], ["created_at", "2021-11-13 23:23:45.125360"], ["record_id", "5a515447-a016-4ea9-b932-751fc67e0728"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Update (1.0ms)[0m  [1m[33mUPDATE "images" SET "updated_at" = $1 WHERE "images"."id" = $2[0m  [["updated_at", "2021-11-13 23:23:45.131335"], ["id", "5a515447-a016-4ea9-b932-751fc67e0728"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+[36m  Disk Storage (5.1ms) [0m[32mUploaded file to key: sct5d0sxz9n4ecjd196gz2oknz0r (checksum: eJz8dXlcQn92pZwLTW8daQ==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 4ad0c0af-9fa0-439b-bb5e-edd86e0947d2) to Async(default) with arguments: #<GlobalID:0x00007f88142126b0 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/2>>
+Completed 200 OK in 82ms (Views: 0.4ms | ActiveRecord: 11.3ms | Allocations: 7560)
+
+
+  [1m[36mActiveStorage::Blob Load (0.9ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [4ad0c0af-9fa0-439b-bb5e-edd86e0947d2] Performing ActiveStorage::AnalyzeJob (Job ID: 4ad0c0af-9fa0-439b-bb5e-edd86e0947d2) from Async(default) enqueued at 2021-11-13T23:23:45Z with arguments: #<GlobalID:0x00007f87e81fcdf0 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/2>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [4ad0c0af-9fa0-439b-bb5e-edd86e0947d2] [36m  Disk Storage (0.6ms) [0m[34mDownloaded file from key: sct5d0sxz9n4ecjd196gz2oknz0r[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [4ad0c0af-9fa0-439b-bb5e-edd86e0947d2]   [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [4ad0c0af-9fa0-439b-bb5e-edd86e0947d2]   [1m[36mActiveStorage::Blob Update (0.6ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"width\":1280,\"height\":804,\"analyzed\":true}"], ["id", 2]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [4ad0c0af-9fa0-439b-bb5e-edd86e0947d2]   [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [4ad0c0af-9fa0-439b-bb5e-edd86e0947d2] Performed ActiveStorage::AnalyzeJob (Job ID: 4ad0c0af-9fa0-439b-bb5e-edd86e0947d2) from Async(default) in 108.35ms
+Started POST "/images/compress" for 127.0.0.1 at 2021-11-14 02:23:46 +0300
+Processing by ImagesController#compress as */*
+  Parameters: {"image"=>#<ActionDispatch::Http::UploadedFile:0x00007f8808113e50 @tempfile=#<Tempfile:/tmp/RackMultipart20211114-47131-9jl175.jpg>, @original_filename="3509.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image\"; filename=\"3509.jpg\"\r\nContent-Type: image/jpeg\r\n">, "email"=>"asdsdbc@mail.com"}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Create (3.8ms)[0m  [1m[32mINSERT INTO "images" ("email", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["email", "asdsdbc@mail.com"], ["created_at", "2021-11-13 23:23:46.841746"], ["updated_at", "2021-11-13 23:23:46.841746"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", "a8a8c72b-3755-40e0-86b9-bd6712f4907b"], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Load (2.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", "a8a8c72b-3755-40e0-86b9-bd6712f4907b"], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Create (0.6ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "410pqf278wdmlckoiaxl7lmuodh9"], ["filename", "3509.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 220016], ["checksum", "eJz8dXlcQn92pZwLTW8daQ=="], ["created_at", "2021-11-13 23:23:46.874034"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Create (2.2ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "blob_id", "created_at", "record_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "image"], ["record_type", "Image"], ["blob_id", 3], ["created_at", "2021-11-13 23:23:46.883443"], ["record_id", "a8a8c72b-3755-40e0-86b9-bd6712f4907b"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Update (1.7ms)[0m  [1m[33mUPDATE "images" SET "updated_at" = $1 WHERE "images"."id" = $2[0m  [["updated_at", "2021-11-13 23:23:46.894310"], ["id", "a8a8c72b-3755-40e0-86b9-bd6712f4907b"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+[36m  Disk Storage (1.8ms) [0m[32mUploaded file to key: 410pqf278wdmlckoiaxl7lmuodh9 (checksum: eJz8dXlcQn92pZwLTW8daQ==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 44d2ab56-ec5a-47d7-9e6e-b71c140743df) to Async(default) with arguments: #<GlobalID:0x00007f8808210bc8 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/3>>
+Completed 200 OK in 81ms (Views: 0.4ms | ActiveRecord: 13.2ms | Allocations: 7667)
+
+
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [44d2ab56-ec5a-47d7-9e6e-b71c140743df] Performing ActiveStorage::AnalyzeJob (Job ID: 44d2ab56-ec5a-47d7-9e6e-b71c140743df) from Async(default) enqueued at 2021-11-13T23:23:46Z with arguments: #<GlobalID:0x00007f87e82a81c8 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/3>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [44d2ab56-ec5a-47d7-9e6e-b71c140743df] [36m  Disk Storage (0.4ms) [0m[34mDownloaded file from key: 410pqf278wdmlckoiaxl7lmuodh9[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [44d2ab56-ec5a-47d7-9e6e-b71c140743df]   [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [44d2ab56-ec5a-47d7-9e6e-b71c140743df]   [1m[36mActiveStorage::Blob Update (0.6ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"width\":1280,\"height\":804,\"analyzed\":true}"], ["id", 3]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [44d2ab56-ec5a-47d7-9e6e-b71c140743df]   [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [44d2ab56-ec5a-47d7-9e6e-b71c140743df] Performed ActiveStorage::AnalyzeJob (Job ID: 44d2ab56-ec5a-47d7-9e6e-b71c140743df) from Async(default) in 89.4ms
+  [1m[36mImage Load (0.4ms)[0m  [1m[34mSELECT "images".* FROM "images" ORDER BY "images"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", "f614b0ae-430a-48af-afa9-ecfd6a1e9bf3"], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  [1m[36mImage Load (0.4ms)[0m  [1m[34mSELECT "images".* FROM "images" ORDER BY "images"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", "f614b0ae-430a-48af-afa9-ecfd6a1e9bf3"], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to ChangeActiveStorageRecordReferencesToUuid (20211113232238)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to EnableUuid (20211113225114)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (5.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "pgcrypto"[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113225114"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateActiveStorageTables (20211113231441)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "key" character varying NOT NULL, "filename" character varying NOT NULL, "content_type" character varying, "metadata" text, "service_name" character varying NOT NULL, "byte_size" bigint NOT NULL, "checksum" character varying NOT NULL, "created_at" timestamp NOT NULL)[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "name" character varying NOT NULL, "record_type" character varying NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" timestamp NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateActiveStorageTables (20211113231441)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.8ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" bigserial primary key, "key" character varying NOT NULL, "filename" character varying NOT NULL, "content_type" character varying, "metadata" text, "service_name" character varying NOT NULL, "byte_size" bigint NOT NULL, "checksum" character varying NOT NULL, "created_at" timestamp NOT NULL)[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "name" character varying NOT NULL, "record_type" character varying NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" timestamp NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113231441"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-11-13 23:37:32.331009"], ["updated_at", "2021-11-13 23:37:32.331009"]]
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateActiveStorageTables (20211113231441)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.7ms)[0m  [1m[35mDROP TABLE "active_storage_variant_records"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE "active_storage_attachments"[0m
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE "active_storage_blobs"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.5ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20211113231441"]]
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7745943112092416805)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateImages (20211113225230)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "images" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "email" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113225230"]]
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateActiveStorageTables (20211113231441)
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.6ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" bigserial primary key, "key" character varying NOT NULL, "filename" character varying NOT NULL, "content_type" character varying, "metadata" text, "service_name" character varying NOT NULL, "byte_size" bigint NOT NULL, "checksum" character varying NOT NULL, "created_at" timestamp NOT NULL)[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (6.7ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "name" character varying NOT NULL, "record_type" character varying NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" timestamp NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (9.9ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211113231441"]]
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(7745943112092416805)[0m
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/images/compress" for 127.0.0.1 at 2021-11-14 02:38:33 +0300
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ImagesController#compress as */*
+  Parameters: {"image"=>#<ActionDispatch::Http::UploadedFile:0x0000558d36a635b0 @tempfile=#<Tempfile:/tmp/RackMultipart20211114-51936-gm7wld.jpg>, @original_filename="3509.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image\"; filename=\"3509.jpg\"\r\nContent-Type: image/jpeg\r\n">, "email"=>"asdsdbc@mail.com"}
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Create (1.4ms)[0m  [1m[32mINSERT INTO "images" ("email", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["email", "asdsdbc@mail.com"], ["created_at", "2021-11-13 23:38:33.553473"], ["updated_at", "2021-11-13 23:38:33.553473"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Load (1.8ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Create (1.9ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "6ys9zpoes8qli3q95a3xx8b69w5e"], ["filename", "3509.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 220016], ["checksum", "eJz8dXlcQn92pZwLTW8daQ=="], ["created_at", "2021-11-13 23:38:33.633942"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Create (1.3ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "image"], ["record_type", "Image"], ["record_id", 1], ["blob_id", 1], ["created_at", "2021-11-13 23:38:33.643708"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Update (1.3ms)[0m  [1m[33mUPDATE "images" SET "updated_at" = $1 WHERE "images"."id" = $2[0m  [["updated_at", "2021-11-13 23:38:33.648995"], ["id", "1edff280-3182-48d7-a824-4ff604363c0e"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+[36m  Disk Storage (1.5ms) [0m[32mUploaded file to key: 6ys9zpoes8qli3q95a3xx8b69w5e (checksum: eJz8dXlcQn92pZwLTW8daQ==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: b01e4963-9d4c-40da-a9d7-56856e51ae79) to Async(default) with arguments: #<GlobalID:0x00007f3e2000e118 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/1>>
+Completed 200 OK in 239ms (Views: 1.2ms | ActiveRecord: 35.5ms | Allocations: 34389)
+
+
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [b01e4963-9d4c-40da-a9d7-56856e51ae79] Performing ActiveStorage::AnalyzeJob (Job ID: b01e4963-9d4c-40da-a9d7-56856e51ae79) from Async(default) enqueued at 2021-11-13T23:38:33Z with arguments: #<GlobalID:0x00007f3e20057520 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/1>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [b01e4963-9d4c-40da-a9d7-56856e51ae79] [36m  Disk Storage (0.4ms) [0m[34mDownloaded file from key: 6ys9zpoes8qli3q95a3xx8b69w5e[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [b01e4963-9d4c-40da-a9d7-56856e51ae79]   [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [b01e4963-9d4c-40da-a9d7-56856e51ae79]   [1m[36mActiveStorage::Blob Update (3.0ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"width\":1280,\"height\":804,\"analyzed\":true}"], ["id", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [b01e4963-9d4c-40da-a9d7-56856e51ae79]   [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [b01e4963-9d4c-40da-a9d7-56856e51ae79] Performed ActiveStorage::AnalyzeJob (Job ID: b01e4963-9d4c-40da-a9d7-56856e51ae79) from Async(default) in 160.19ms
+  [1m[36mImage Load (0.6ms)[0m  [1m[34mSELECT "images".* FROM "images" ORDER BY "images"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1m[34mSELECT "images".* FROM "images" ORDER BY "images"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/images/1edff280-3182-48d7-a824-4ff604363c0e/download" for 127.0.0.1 at 2021-11-14 02:38:59 +0300
+Processing by ImagesController#download as */*
+  Parameters: {"id"=>"1edff280-3182-48d7-a824-4ff604363c0e", "image"=>{}}
+  [1m[36mImage Load (0.9ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT $2[0m  [["id", "1edff280-3182-48d7-a824-4ff604363c0e"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:22:in `set_image'
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:16:in `download'
+  [1m[36mActiveStorage::Blob Load (1.0ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:16:in `download'
+Completed 200 OK in 29ms (Views: 0.4ms | ActiveRecord: 2.6ms | Allocations: 3412)
+
+
+Started GET "/" for 127.0.0.1 at 2021-11-14 02:39:12 +0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/share/rvm/gems/ruby-3.0.0/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/share/rvm/gems/ruby-3.0.0/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 7.4ms | Allocations: 354)
+Completed 200 OK in 14ms (Views: 10.1ms | ActiveRecord: 0.0ms | Allocations: 2739)
+
+
+Started GET "//rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--38ebc5b86cac5014dd479533ec3f8829a20f615f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2Q25OaGRtVnlld1k2REhGMVlXeHBkSGxwRHc9PSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--55cc9331fba660900747e58bec5a282e6b7990a1/3509.jpg" for 127.0.0.1 at 2021-11-14 02:39:16 +0300
+Processing by ActiveStorage::Representations::RedirectController#show as JPEG
+  Parameters: {"signed_blob_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--38ebc5b86cac5014dd479533ec3f8829a20f615f", "variation_key"=>"[FILTERED]", "filename"=>"3509"}
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mActiveStorage::VariantRecord Load (0.6ms)[0m  [1m[34mSELECT "active_storage_variant_records".* FROM "active_storage_variant_records" WHERE "active_storage_variant_records"."blob_id" = $1 AND "active_storage_variant_records"."variation_digest" = $2 LIMIT $3[0m  [["blob_id", 1], ["variation_digest", "cGOfhfbZsle5Q7mU0qHuxFpt3ic="], ["LIMIT", 1]]
+[36m  Disk Storage (0.7ms) [0m[34mDownloaded file from key: 6ys9zpoes8qli3q95a3xx8b69w5e[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveStorage::VariantRecord Create (0.6ms)[0m  [1m[32mINSERT INTO "active_storage_variant_records" ("blob_id", "variation_digest") VALUES ($1, $2) RETURNING "id"[0m  [["blob_id", 1], ["variation_digest", "cGOfhfbZsle5Q7mU0qHuxFpt3ic="]]
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", nil], ["record_type", "ActiveStorage::VariantRecord"], ["name", "image"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", nil], ["record_type", "ActiveStorage::VariantRecord"], ["name", "image"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Blob Create (4.0ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "zj1opj778c9je8ynxbgx5oqr8i2x"], ["filename", "3509.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 19967], ["checksum", "vsw312KA8T0pTxiX4ADS3g=="], ["created_at", "2021-11-13 23:39:16.591897"]]
+  [1m[36mActiveStorage::Attachment Create (0.5ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "image"], ["record_type", "ActiveStorage::VariantRecord"], ["record_id", 0], ["blob_id", 2], ["created_at", "2021-11-13 23:39:16.604437"]]
+  [1m[36mActiveStorage::Attachment Update (0.9ms)[0m  [1m[33mUPDATE "active_storage_attachments" SET "record_id" = $1 WHERE "active_storage_attachments"."id" = $2[0m  [["record_id", 0], ["id", "859dd133-9d9b-4e7e-8d00-5d8dd011eb38"]]
+  [1m[36mActiveStorage::VariantRecord Load (0.6ms)[0m  [1m[34mSELECT "active_storage_variant_records".* FROM "active_storage_variant_records" WHERE "active_storage_variant_records"."blob_id" = $1 AND "active_storage_variant_records"."id" = $2 LIMIT $3[0m  [["blob_id", 1], ["id", nil], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+[36m  Disk Storage (1.3ms) [0m[32mUploaded file to key: zj1opj778c9je8ynxbgx5oqr8i2x (checksum: vsw312KA8T0pTxiX4ADS3g==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: d637524b-109a-4ab9-b4dd-3dc5a7ca6a1a) to Async(default) with arguments: #<GlobalID:0x00007f3e2015d168 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/2>>
+[36m  Disk Storage (1.6ms) [0m[34mGenerated URL for file at key: zj1opj778c9je8ynxbgx5oqr8i2x (http://127.0.0.1:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhlbW94YjNCcU56YzRZemxxWlRoNWJuaGlaM2cxYjNGeU9Ha3llQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTzJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpNMU1Ea3VhbkJuSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0Snljek5UQTVMbXB3WndZN0JsUTZFV052Ym5SbGJuUmZkSGx3WlVraUQybHRZV2RsTDJwd1pXY0dPd1pVT2hGelpYSjJhV05sWDI1aGJXVTZDbXh2WTJGcyIsImV4cCI6IjIwMjEtMTEtMTNUMjM6NDQ6MTYuNjQzWiIsInB1ciI6ImJsb2Jfa2V5In19--daa45e0f5a32120a52132208063d7da4b0f63c2b/3509.jpg)[0m
+Redirected to http://127.0.0.1:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhlbW94YjNCcU56YzRZemxxWlRoNWJuaGlaM2cxYjNGeU9Ha3llQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTzJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpNMU1Ea3VhbkJuSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0Snljek5UQTVMbXB3WndZN0JsUTZFV052Ym5SbGJuUmZkSGx3WlVraUQybHRZV2RsTDJwd1pXY0dPd1pVT2hGelpYSjJhV05sWDI1aGJXVTZDbXh2WTJGcyIsImV4cCI6IjIwMjEtMTEtMTNUMjM6NDQ6MTYuNjQzWiIsInB1ciI6ImJsb2Jfa2V5In19--daa45e0f5a32120a52132208063d7da4b0f63c2b/3509.jpg
+Completed 302 Found in 164ms (ActiveRecord: 19.6ms | Allocations: 20505)
+
+
+  [1m[36mActiveStorage::Blob Load (1.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [d637524b-109a-4ab9-b4dd-3dc5a7ca6a1a] Performing ActiveStorage::AnalyzeJob (Job ID: d637524b-109a-4ab9-b4dd-3dc5a7ca6a1a) from Async(default) enqueued at 2021-11-13T23:39:16Z with arguments: #<GlobalID:0x00007f3e201fe888 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/2>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [d637524b-109a-4ab9-b4dd-3dc5a7ca6a1a] [36m  Disk Storage (24.0ms) [0m[34mDownloaded file from key: zj1opj778c9je8ynxbgx5oqr8i2x[0m
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhlbW94YjNCcU56YzRZemxxWlRoNWJuaGlaM2cxYjNGeU9Ha3llQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTzJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpNMU1Ea3VhbkJuSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0Snljek5UQTVMbXB3WndZN0JsUTZFV052Ym5SbGJuUmZkSGx3WlVraUQybHRZV2RsTDJwd1pXY0dPd1pVT2hGelpYSjJhV05sWDI1aGJXVTZDbXh2WTJGcyIsImV4cCI6IjIwMjEtMTEtMTNUMjM6NDQ6MTYuNjQzWiIsInB1ciI6ImJsb2Jfa2V5In19--daa45e0f5a32120a52132208063d7da4b0f63c2b/3509.jpg" for 127.0.0.1 at 2021-11-14 02:39:16 +0300
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"3509"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 240)
+
+
+[ActiveJob] [ActiveStorage::AnalyzeJob] [d637524b-109a-4ab9-b4dd-3dc5a7ca6a1a]   [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [d637524b-109a-4ab9-b4dd-3dc5a7ca6a1a]   [1m[36mActiveStorage::Blob Update (1.6ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"width\":1280,\"height\":804,\"analyzed\":true}"], ["id", 2]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [d637524b-109a-4ab9-b4dd-3dc5a7ca6a1a]   [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [d637524b-109a-4ab9-b4dd-3dc5a7ca6a1a] Performed ActiveStorage::AnalyzeJob (Job ID: d637524b-109a-4ab9-b4dd-3dc5a7ca6a1a) from Async(default) in 116.67ms
+Started POST "/images/compress" for 127.0.0.1 at 2021-11-14 02:40:02 +0300
+Processing by ImagesController#compress as */*
+  Parameters: {"image"=>#<ActionDispatch::Http::UploadedFile:0x00007f3e54cde120 @tempfile=#<Tempfile:/tmp/RackMultipart20211114-51936-hgctqs.jpg>, @original_filename="0e97765172ca9089aa95-1.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image\"; filename=\"0e97765172ca9089aa95-1.jpg\"\r\nContent-Type: image/jpeg\r\n">, "email"=>"asdsdbc@mail.com"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Create (3.9ms)[0m  [1m[32mINSERT INTO "images" ("email", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["email", "asdsdbc@mail.com"], ["created_at", "2021-11-13 23:40:02.880636"], ["updated_at", "2021-11-13 23:40:02.880636"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Load (1.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 607], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Load (2.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 607], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Blob Create (0.7ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "aqf1keakdktkn1qe7ydj19s8zadc"], ["filename", "0e97765172ca9089aa95-1.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 274899], ["checksum", "zg1Grz9DNXkafrezItXC3w=="], ["created_at", "2021-11-13 23:40:02.945602"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mActiveStorage::Attachment Create (1.7ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "image"], ["record_type", "Image"], ["record_id", 607], ["blob_id", 3], ["created_at", "2021-11-13 23:40:02.953207"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mImage Update (2.6ms)[0m  [1m[33mUPDATE "images" SET "updated_at" = $1 WHERE "images"."id" = $2[0m  [["updated_at", "2021-11-13 23:40:02.962986"], ["id", "0607c56a-5915-47db-b3a8-5c3fac93eed6"]]
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/images_controller.rb:6:in `compress'
+[36m  Disk Storage (1.7ms) [0m[32mUploaded file to key: aqf1keakdktkn1qe7ydj19s8zadc (checksum: zg1Grz9DNXkafrezItXC3w==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 93feefa6-1296-422a-88f6-b3da33c91e72) to Async(default) with arguments: #<GlobalID:0x00007f3e480c1718 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/3>>
+Completed 200 OK in 207ms (Views: 0.2ms | ActiveRecord: 49.0ms | Allocations: 22734)
+
+
+  [1m[36mActiveStorage::Blob Load (4.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [93feefa6-1296-422a-88f6-b3da33c91e72] Performing ActiveStorage::AnalyzeJob (Job ID: 93feefa6-1296-422a-88f6-b3da33c91e72) from Async(default) enqueued at 2021-11-13T23:40:02Z with arguments: #<GlobalID:0x00007f3e502834b8 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/3>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [93feefa6-1296-422a-88f6-b3da33c91e72] [36m  Disk Storage (1.5ms) [0m[34mDownloaded file from key: aqf1keakdktkn1qe7ydj19s8zadc[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [93feefa6-1296-422a-88f6-b3da33c91e72]   [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [93feefa6-1296-422a-88f6-b3da33c91e72]   [1m[36mActiveStorage::Blob Update (1.1ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"width\":1100,\"height\":733,\"analyzed\":true}"], ["id", 3]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [93feefa6-1296-422a-88f6-b3da33c91e72]   [1m[36mTRANSACTION (4.2ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [93feefa6-1296-422a-88f6-b3da33c91e72] Performed ActiveStorage::AnalyzeJob (Job ID: 93feefa6-1296-422a-88f6-b3da33c91e72) from Async(default) in 218.85ms
+  [1m[36mImage Load (0.5ms)[0m  [1m[34mSELECT "images".* FROM "images" ORDER BY "images"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1m[34mSELECT "images".* FROM "images" ORDER BY "images"."created_at" DESC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/images/0607c56a-5915-47db-b3a8-5c3fac93eed6/download" for 127.0.0.1 at 2021-11-14 02:40:36 +0300
+Processing by ImagesController#download as */*
+  Parameters: {"id"=>"0607c56a-5915-47db-b3a8-5c3fac93eed6", "image"=>{}}
+  [1m[36mImage Load (0.8ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT $2[0m  [["id", "0607c56a-5915-47db-b3a8-5c3fac93eed6"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:22:in `set_image'
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 607], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:16:in `download'
+  [1m[36mActiveStorage::Blob Load (1.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:16:in `download'
+Completed 200 OK in 66ms (Views: 1.5ms | ActiveRecord: 16.4ms | Allocations: 8128)
+
+
+Started GET "//rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--5836c20be2645664c0c526d58c63ff72de0e8c4b/0e97765172ca9089aa95-1.jpg" for 127.0.0.1 at 2021-11-14 02:40:52 +0300
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--5836c20be2645664c0c526d58c63ff72de0e8c4b", "filename"=>"0e97765172ca9089aa95-1"}
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+[36m  Disk Storage (0.7ms) [0m[34mGenerated URL for file at key: aqf1keakdktkn1qe7ydj19s8zadc (http://127.0.0.1:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhZWEZtTVd0bFlXdGthM1JyYmpGeFpUZDVaR294T1hNNGVtRmtZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpWDJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpCbE9UYzNOalV4TnpKallUa3dPRGxoWVRrMUxURXVhbkJuSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0Snljd1pUazNOelkxTVRjeVkyRTVNRGc1WVdFNU5TMHhMbXB3WndZN0JsUTZFV052Ym5SbGJuUmZkSGx3WlVraUQybHRZV2RsTDJwd1pXY0dPd1pVT2hGelpYSjJhV05sWDI1aGJXVTZDbXh2WTJGcyIsImV4cCI6IjIwMjEtMTEtMTNUMjM6NDU6NTIuMDY1WiIsInB1ciI6ImJsb2Jfa2V5In19--5ac3539c81b21bd0320e8efc3908624590df6cb2/0e97765172ca9089aa95-1.jpg)[0m
+Redirected to http://127.0.0.1:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhZWEZtTVd0bFlXdGthM1JyYmpGeFpUZDVaR294T1hNNGVtRmtZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpWDJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpCbE9UYzNOalV4TnpKallUa3dPRGxoWVRrMUxURXVhbkJuSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0Snljd1pUazNOelkxTVRjeVkyRTVNRGc1WVdFNU5TMHhMbXB3WndZN0JsUTZFV052Ym5SbGJuUmZkSGx3WlVraUQybHRZV2RsTDJwd1pXY0dPd1pVT2hGelpYSjJhV05sWDI1aGJXVTZDbXh2WTJGcyIsImV4cCI6IjIwMjEtMTEtMTNUMjM6NDU6NTIuMDY1WiIsInB1ciI6ImJsb2Jfa2V5In19--5ac3539c81b21bd0320e8efc3908624590df6cb2/0e97765172ca9089aa95-1.jpg
+Completed 302 Found in 6ms (ActiveRecord: 0.5ms | Allocations: 1473)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhZWEZtTVd0bFlXdGthM1JyYmpGeFpUZDVaR294T1hNNGVtRmtZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpWDJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpCbE9UYzNOalV4TnpKallUa3dPRGxoWVRrMUxURXVhbkJuSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0Snljd1pUazNOelkxTVRjeVkyRTVNRGc1WVdFNU5TMHhMbXB3WndZN0JsUTZFV052Ym5SbGJuUmZkSGx3WlVraUQybHRZV2RsTDJwd1pXY0dPd1pVT2hGelpYSjJhV05sWDI1aGJXVTZDbXh2WTJGcyIsImV4cCI6IjIwMjEtMTEtMTNUMjM6NDU6NTIuMDY1WiIsInB1ciI6ImJsb2Jfa2V5In19--5ac3539c81b21bd0320e8efc3908624590df6cb2/0e97765172ca9089aa95-1.jpg" for 127.0.0.1 at 2021-11-14 02:40:52 +0300
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"0e97765172ca9089aa95-1"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 225)
+
+
+Started GET "/images/0607c56a-5915-47db-b3a8-5c3fac93eed6/download" for 127.0.0.1 at 2021-11-14 02:41:12 +0300
+Processing by ImagesController#download as */*
+  Parameters: {"id"=>"0607c56a-5915-47db-b3a8-5c3fac93eed6", "image"=>{}}
+  [1m[36mImage Load (14.2ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT $2[0m  [["id", "0607c56a-5915-47db-b3a8-5c3fac93eed6"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:22:in `set_image'
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 607], ["record_type", "Image"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:16:in `download'
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:16:in `download'
+Completed 200 OK in 112ms (Views: 0.1ms | ActiveRecord: 34.4ms | Allocations: 15610)
+
+
+Started GET "/" for 127.0.0.1 at 2021-11-14 02:41:19 +0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/share/rvm/gems/ruby-3.0.0/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/share/rvm/gems/ruby-3.0.0/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 11.3ms | Allocations: 186)
+Completed 200 OK in 15ms (Views: 12.8ms | ActiveRecord: 0.0ms | Allocations: 842)
+
+
+Started GET "/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--5836c20be2645664c0c526d58c63ff72de0e8c4b/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2Q25OaGRtVnlld1k2REhGMVlXeHBkSGxwRHc9PSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--55cc9331fba660900747e58bec5a282e6b7990a1/0e97765172ca9089aa95-1.jpg" for 127.0.0.1 at 2021-11-14 02:41:22 +0300
+Processing by ActiveStorage::Representations::RedirectController#show as JPEG
+  Parameters: {"signed_blob_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--5836c20be2645664c0c526d58c63ff72de0e8c4b", "variation_key"=>"[FILTERED]", "filename"=>"0e97765172ca9089aa95-1"}
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mActiveStorage::VariantRecord Load (0.4ms)[0m  [1m[34mSELECT "active_storage_variant_records".* FROM "active_storage_variant_records" WHERE "active_storage_variant_records"."blob_id" = $1 AND "active_storage_variant_records"."variation_digest" = $2 LIMIT $3[0m  [["blob_id", 3], ["variation_digest", "cGOfhfbZsle5Q7mU0qHuxFpt3ic="], ["LIMIT", 1]]
+[36m  Disk Storage (0.7ms) [0m[34mDownloaded file from key: aqf1keakdktkn1qe7ydj19s8zadc[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveStorage::VariantRecord Create (5.9ms)[0m  [1m[32mINSERT INTO "active_storage_variant_records" ("blob_id", "variation_digest") VALUES ($1, $2) RETURNING "id"[0m  [["blob_id", 3], ["variation_digest", "cGOfhfbZsle5Q7mU0qHuxFpt3ic="]]
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", nil], ["record_type", "ActiveStorage::VariantRecord"], ["name", "image"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", nil], ["record_type", "ActiveStorage::VariantRecord"], ["name", "image"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Blob Create (2.4ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "k98rkphs2attq0flyh556vf8ah5q"], ["filename", "0e97765172ca9089aa95-1.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 16737], ["checksum", "MrVoCILBI0YK3w9VVERPQQ=="], ["created_at", "2021-11-13 23:41:22.777172"]]
+  [1m[36mActiveStorage::Attachment Create (2.1ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "image"], ["record_type", "ActiveStorage::VariantRecord"], ["record_id", 0], ["blob_id", 4], ["created_at", "2021-11-13 23:41:22.789867"]]
+  [1m[36mActiveStorage::Attachment Update (0.7ms)[0m  [1m[33mUPDATE "active_storage_attachments" SET "record_id" = $1 WHERE "active_storage_attachments"."id" = $2[0m  [["record_id", 0], ["id", "3ad4e2b2-4131-47b2-b275-5efd1a40d7f4"]]
+  [1m[36mActiveStorage::VariantRecord Load (0.4ms)[0m  [1m[34mSELECT "active_storage_variant_records".* FROM "active_storage_variant_records" WHERE "active_storage_variant_records"."blob_id" = $1 AND "active_storage_variant_records"."id" = $2 LIMIT $3[0m  [["blob_id", 3], ["id", nil], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+[36m  Disk Storage (0.3ms) [0m[32mUploaded file to key: k98rkphs2attq0flyh556vf8ah5q (checksum: MrVoCILBI0YK3w9VVERPQQ==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 6f32eb73-ac58-4dbb-872d-4e7f6d7a485c) to Async(default) with arguments: #<GlobalID:0x00007f3e40044130 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/4>>
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [6f32eb73-ac58-4dbb-872d-4e7f6d7a485c] Performing ActiveStorage::AnalyzeJob (Job ID: 6f32eb73-ac58-4dbb-872d-4e7f6d7a485c) from Async(default) enqueued at 2021-11-13T23:41:22Z with arguments: #<GlobalID:0x00007f3e40014480 @uri=#<URI::GID gid://image-compressior/ActiveStorage::Blob/4>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [6f32eb73-ac58-4dbb-872d-4e7f6d7a485c] [36m  Disk Storage (0.1ms) [0m[34mDownloaded file from key: k98rkphs2attq0flyh556vf8ah5q[0m
+[36m  Disk Storage (1.4ms) [0m[34mGenerated URL for file at key: k98rkphs2attq0flyh556vf8ah5q (http://127.0.0.1:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhems0Y210d2FITXlZWFIwY1RCbWJIbG9OVFUyZG1ZNFlXZzFjUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpWDJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpCbE9UYzNOalV4TnpKallUa3dPRGxoWVRrMUxURXVhbkJuSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0Snljd1pUazNOelkxTVRjeVkyRTVNRGc1WVdFNU5TMHhMbXB3WndZN0JsUTZFV052Ym5SbGJuUmZkSGx3WlVraUQybHRZV2RsTDJwd1pXY0dPd1pVT2hGelpYSjJhV05sWDI1aGJXVTZDbXh2WTJGcyIsImV4cCI6IjIwMjEtMTEtMTNUMjM6NDY6MjIuODMzWiIsInB1ciI6ImJsb2Jfa2V5In19--a0ba43fd3ca57bc51d01ae74792b2798a1f514fb/0e97765172ca9089aa95-1.jpg)[0m
+Redirected to http://127.0.0.1:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhems0Y210d2FITXlZWFIwY1RCbWJIbG9OVFUyZG1ZNFlXZzFjUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpWDJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpCbE9UYzNOalV4TnpKallUa3dPRGxoWVRrMUxURXVhbkJuSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0Snljd1pUazNOelkxTVRjeVkyRTVNRGc1WVdFNU5TMHhMbXB3WndZN0JsUTZFV052Ym5SbGJuUmZkSGx3WlVraUQybHRZV2RsTDJwd1pXY0dPd1pVT2hGelpYSjJhV05sWDI1aGJXVTZDbXh2WTJGcyIsImV4cCI6IjIwMjEtMTEtMTNUMjM6NDY6MjIuODMzWiIsInB1ciI6ImJsb2Jfa2V5In19--a0ba43fd3ca57bc51d01ae74792b2798a1f514fb/0e97765172ca9089aa95-1.jpg
+Completed 302 Found in 213ms (ActiveRecord: 24.2ms | Allocations: 20414)
+
+
+[ActiveJob] [ActiveStorage::AnalyzeJob] [6f32eb73-ac58-4dbb-872d-4e7f6d7a485c]   [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [6f32eb73-ac58-4dbb-872d-4e7f6d7a485c]   [1m[36mActiveStorage::Blob Update (1.4ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"width\":1100,\"height\":733,\"analyzed\":true}"], ["id", 4]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [6f32eb73-ac58-4dbb-872d-4e7f6d7a485c]   [1m[36mTRANSACTION (3.3ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [6f32eb73-ac58-4dbb-872d-4e7f6d7a485c] Performed ActiveStorage::AnalyzeJob (Job ID: 6f32eb73-ac58-4dbb-872d-4e7f6d7a485c) from Async(default) in 75.62ms
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhems0Y210d2FITXlZWFIwY1RCbWJIbG9OVFUyZG1ZNFlXZzFjUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpWDJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpCbE9UYzNOalV4TnpKallUa3dPRGxoWVRrMUxURXVhbkJuSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0Snljd1pUazNOelkxTVRjeVkyRTVNRGc1WVdFNU5TMHhMbXB3WndZN0JsUTZFV052Ym5SbGJuUmZkSGx3WlVraUQybHRZV2RsTDJwd1pXY0dPd1pVT2hGelpYSjJhV05sWDI1aGJXVTZDbXh2WTJGcyIsImV4cCI6IjIwMjEtMTEtMTNUMjM6NDY6MjIuODMzWiIsInB1ciI6ImJsb2Jfa2V5In19--a0ba43fd3ca57bc51d01ae74792b2798a1f514fb/0e97765172ca9089aa95-1.jpg" for 127.0.0.1 at 2021-11-14 02:41:22 +0300
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"0e97765172ca9089aa95-1"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 225)
+
+

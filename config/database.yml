@@ -3,7 +3,7 @@ test:
   encoding: unicode
   pool: 5
   host: 127.0.0.1
-  database: image_api_test
+  database: compressor_api_test
   username: image
   password: postgres
 
@@ -11,7 +11,7 @@ development:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  database: image_api
+  database: compressor_api
   host: 127.0.0.1
   username: image
   password: postgres

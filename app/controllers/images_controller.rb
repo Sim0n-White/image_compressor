@@ -12,8 +12,8 @@ class ImagesController < ApplicationController
   end
 
   def download
-    @image.image.variant(saver: { quality: 10 })
-    render json: url_for(@image.image)
+    #@image.image.variant(saver: { quality: 10 })
+    render json: url_for(@image.image.variant(saver: { quality: 10 }))
   end
 
   private
