@@ -12,7 +12,7 @@ class ImagesController < ApplicationController
   end
 
   def download
-    dow_link = url_for(Image.find(@image.id).compressed_image)
+    dow_link = url_for(@image.compressed_image)
     render json: dow_link
   end
 
